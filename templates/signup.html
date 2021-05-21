@@ -1,0 +1,112 @@
+{% extends 'base_layout.html' %}
+{% load static %}
+
+{% block title %}
+    You Are Strong
+{% endblock %}
+
+{% block style %}
+body{
+    {% comment %} background: linear-gradient(to bottom,  #5D3F6A, #503F0A) no-repeat center center fixed; {% endcomment %}
+    background: #d0d0d0;
+}
+
+.login-title{
+    color: white;
+    font-weight: 600;
+    font-size: xx-large;
+    line-height: 60px;
+    background-color: darkblue;
+    height: 60px;
+}
+
+.card-div{
+    height: 350px;
+    width: 400px;
+    background-color: white;
+    box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+    border-radius: 10px;
+    backdrop-filter: blur(1px);
+    transition: all 0.9s cubic-bezier(.25,.8,.25,1);
+}
+
+.card-div:hover{
+    backdrop-filter: blur(4px);
+    box-shadow: 0 2px 6px rgba(0,0,0,0.7), 0 1px 2px rgba(0,0,0,0.24);
+}
+
+#login-btn{
+    color: white;
+    font-size: x-large;
+    border:0px;
+    background-color:green;
+    width: 70%;
+    min-height:50px;
+    min-width:100px;
+    border-radius: 10px;
+}
+
+#login-btn:hover{
+    background-color: darkgreen;
+}
+
+{% endblock %}
+{% block content %}
+</br> </br>
+<div class="bg-light container d-flex justify-content-center p-0">
+    {% comment %} <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Sign up</button>
+    </form> {% endcomment %}
+
+    <form name = "form" action = "{% url 'signup' %}" 
+    method = "POST" >{% csrf_token %}
+
+    <div  style="margin: auto;">
+        <div class="login-title d-flex justify-content-center">
+            Your Are Strong
+        </div>
+
+        <div class="row p-4">
+            <div class="col-sm-6 p-1">
+                <input class="w-100" type = "text" style = "font-weight: 100; font-size: large; margin: auto;  padding: 10px 10px 10px; border-radius: 10px;"
+                placeholder = "First Name" name = "firstname" />
+            </div>
+
+            <div class="col-sm-6 p-1">
+                <input class="w-100" type = "text" style = "font-weight: 100; font-size: large; margin: auto;  padding: 10px 10px 10px; border-radius: 10px;"
+                placeholder = "Last Name" name = "lastname" />
+            </div>
+
+            <div class="col-sm-6 p-1">
+                <input class="w-100" type = "text" style = "font-weight: 100; font-size: large; margin: auto;  padding: 10px 10px 10px; border-radius: 10px;"
+                placeholder = "Email" name = "username" />
+            </div>
+
+            <div class="col-sm-6 p-1">
+                <input class="w-100" type = "Password" style = "font-weight: 100; font-size: large; margin: auto;  padding: 10px 10px 10px; border-radius: 10px;"
+                placeholder = "Password" name = "password1" />
+            </div>
+
+
+            <div class="col-sm-6 p-1">
+                <input class="w-100" type = "Password" style = "font-weight: 100; font-size: large; margin: auto;  padding: 10px 10px 10px; border-radius: 10px;"
+                placeholder = "Reenter Password" name = "password2" />
+            </div>
+
+        </div>
+        
+        <center> 
+            <div>
+                <button id="login-btn" type = "submit" value = "Login" >
+                    Sign Up
+                </button>
+            </div>
+        </center>
+    </div>
+    <br>
+    
+    </form>
+</div>
+{% endblock %}

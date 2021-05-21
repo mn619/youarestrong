@@ -1,0 +1,109 @@
+{% extends 'base_layout.html' %}
+{% load static %}
+
+{% block title %}
+    You are Strong
+{% endblock %}
+
+{% block style %}
+body{
+    {% comment %} background: linear-gradient(to bottom,  #5D3F6A, #503F0A) no-repeat center center fixed; {% endcomment %}
+    background: #d0d0d0;
+}
+
+.event{
+	border-radius: 5px; 
+    background-color: #f5f5f5;
+    margin-top: 20px;
+    padding: 0px 20px 10px;
+    border: 1px solid white;
+    box-shadow: 0 4px 7px rgba(0,0,0,0.05), 0 4px 4px rgba(0,0,0,0.12);
+    transition: all 0.3s cubic-bezier(.25,.8,.25,1);
+}
+
+.blog:hover{
+    border: 1px solid black;
+    background-color: #f0f0f0;
+}
+
+{% endblock %}
+{% block content %}
+<script>
+function register(event_id){
+    $.ajax({
+        type: "POST",
+        url: "{% url 'api:register-for-event' %}",
+        data:{
+            'csrfmiddlewaretoken': '{{ csrf_token }}',
+            'event_id': event_id
+        },
+        success: function(){
+            alert("Registered");
+        }
+    });
+}
+
+function deregister(event_id){
+    $.ajax({
+        type: "POST",
+        url: "{% url 'api:deregister-for-event' %}",
+        data:{
+            'csrfmiddlewaretoken': '{{ csrf_token }}',
+            'event_id': event_id
+        },
+        success: function(){
+            alert("De-registered");
+        }
+    });
+}
+
+</script>
+<div class="container">
+    <br>
+    {% if request.user.is_authenticated and page == 'Events' %}
+        <form id="write-message-form" name="post-message-form" action="{% url 'api:create-event' %}" method="POST" enctype="multipart/form-data" style="width: 100%;" >
+                {% csrf_token %}
+                <h2 class="ml-1 border-bottom"> Create Event </h2>
+                <div style="padding-top: 10px;margin: 0px 10px 0px">
+                    <div for="message-title" style="font-size: large; color:black; font-weight: bold;">Title :</div>
+                    <input required type="text" id="message-title-input" name="name"  style="width:40%; height: 40px;border-radius: 5px; resize: horizontal; font-weight: bold; font-size: x-large; color:black; line-height: 40px;"></input>
+
+                    <br>
+                    <br>
+
+                    <label for="Date" style="font-size: large; color:black; font-weight: bold;"> State : </label> <br>
+                    <select name="place" class="browser-default custom-select" required style="width:40%;">
+                        <option selected> State </option>
+                        {% for state in states %}
+                            <option value="{{state}}"> {{state}} </option>
+                        {% endfor %}>    
+                    </select>
+
+                    <br>
+                    <br>
+
+                    <button class="btn btn-success mt-1" type="submit" value="Submit"> Submit </button>
+                </div>
+            </form>
+    {% endif %}
+    {% for event in events %}
+        <div class="event">
+            <p class="text-center"> Event Name : {{ event.name }}, By : {{ event.speaker.first_name }}  {{ event.speaker.last_name }}</p> 
+            <p class="text-center"> Registered By : {{ event.user_events_set.all | length }} Users </p>
+            <div class="row">
+                <div class="col-sm-8">
+                    <div class="bg-secondary rounded ">
+                        <p class="text-center"> on {{ event.time }} at {{ event.place }} </p>
+                    </div>
+                </div>
+                <div class="col-sm-1">
+                    <button class="btn btn-success" onclick=register('{{event.id}}')> Register </button>
+                </div>
+                <div class="col-sm-2">
+                    <button class="btn btn-warning" onclick=deregister('{{event.id}}')> De-register </button>
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+</div>
+{% endblock %}

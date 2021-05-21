@@ -1,0 +1,75 @@
+{% extends 'base_layout.html' %}
+{% load static %}
+
+{% block title %}
+    {{ blog.title }}
+{% endblock %}
+
+{% block header_affix %}
+    {{ block.super }}
+{% endblock %}
+
+{% block content %}
+    <div class="container message-detail-page">
+        <div class="message-detail">
+            <h2> <a href="{% url 'app:blog-detail' blog_id=blog.id %}"> {{ blog.title }} </a> </h2>
+            <span style="font-size: large;">
+                By 
+                <b style="font-size: large;">
+                    <a href="#"> 
+						<img class="img-float" src="{{ message.message_sender.profile.picture.url }}" style="max-height:30px; border-radius: 50%;">
+						{{ blog.aurthor.first_name }} {{ blog.aurthor.last_name }}
+					</a> 
+                </b> 
+            </span>, {{blog.time }} 
+            <br>
+            
+            <div class="message-detail-content-outer"> 
+                <div class="message-detail-content-inner"> 
+                    <div class="display-math" >{{ blog.content }}</pre>
+                </div>
+                {% if message.message_image %}
+                <img class="img-fluid" src="{{ message.message_image.url }}" alt="" style=" display: block; margin: auto;">
+                {% endif %}
+            </div>
+            
+        </div>
+        <br>
+
+        <h3 style="color: blue;"> Comments : ({{ comments|length }})</h3>
+            {% if user.is_authenticated %}
+            <form name="post-comment-form" action="{% url 'api:post_comment' %}" method="POST" style="align-items:center" >
+                {% csrf_token %}
+                <input type="hidden" name="blog_id" value={{blog.id}}>
+                <div class="mb-3 d-flex align-items-center">
+                    <textarea type="text" id="message-title-input" name="text" style="height: 35px; width: 50%; border-radius: 0px;"> </textarea>
+                    <button class="btn btn-primary" type="submit" style="margin-left: 10px;"> Comment </button>
+                </div>
+            </form>
+            {% endif %}
+        <div class="message-detail-comments">
+            {% for comment in comments %}
+            <div class="comment-wrapper">
+                <div class="comment-div">
+                    <b style="font-size: large;">
+                        <a href="#">
+                            <img src="{% static 'default-profile.jpg' %}" style="max-height: 30px; border-radius:50%;">
+                            {{ comment.aurthor.first_name }} {{ comment.aurthor.last_name }} 
+                        </a> 
+                    </b>
+                    <span style="color:grey; font-size: smaller;"> {{ comment.time }} </span>
+                    <div style="font-size: large;">
+                        {{ comment.text }}    
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        
+    </div>
+{% endblock %}
+
+{% block script %}
+$(document).ready(function(){
+
+});
+{% endblock %}

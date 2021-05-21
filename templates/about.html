@@ -1,0 +1,41 @@
+{% extends 'base_layout.html' %}
+{% load static %}
+
+{% block title %}
+    Your Are Strong
+{% endblock %}
+
+{% block style %}
+body{
+    {% comment %} background: linear-gradient(to bottom,  #5D3F6A, #503F0A) no-repeat center center fixed; {% endcomment %}
+    background-image: url("{% static 'background.jpeg' %}");
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+}
+
+{% endblock %}
+{% block content %}
+</br> </br>
+    <div class="container">
+        <div class="border-bottom">
+            <h1> YOU are strong </h1>
+            <p> When we rebuild a house, we are rebuilding a home. When we recover from disaster, we are rebuilding lives and livelihoods </p>
+        </div>
+
+        <div class="mt-4 border-bottom">
+            <h2 style="color: black"> Our Aim </h2>
+            <p style="color: black"> We aim to be a medium to connect people with trained volunteers to care psychological trauma or motivate them after a disaster because we believe that humans need to help themselves to survive. </p>
+        </div>
+
+        <div class="mt-4">
+            <h3 style="color: white"> Who are we </h3>
+            <p style="color: white">  Dhrubojeet Haldar : 19114029 </p>
+            <p style="color: white"> Sneha Priya : 19114082 </p>
+            <p style="color: white"> Piyush Kumat : 19114061 </p>
+            <p style="color: white"> Aman Dubey : 17312004 </p>
+            <p style="color: white"> Avneet Jain : 17115024 </p>
+            <p style="color: white"> Vivek Harish Maheshwari : 17115118 </p>
+        </div>
+    </div>
+{% endblock %}

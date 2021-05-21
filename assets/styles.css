@@ -1,0 +1,308 @@
+p {
+    line-height: 1.7em;
+}
+
+a, a:hover, a:focus {
+    text-decoration: none;
+    transition: all 0.3s;
+}
+
+#sidebar.active {
+    margin-left: -250px;
+}
+
+#sidebar {
+    /* don't forget to add all the previously mentioned styles here too */
+    min-width: 250px;
+    max-width: 250px;
+    min-height: 100vh;
+    background: #7386D5;
+    color: #fff;
+    transition: all 0.3s;
+}
+
+#sidebar a{
+    color: inherit;
+    text-decoration: none;
+    transition: all 0.3s;
+}
+#sidebar .sidebar-header {
+    padding: 20px;
+    background: #6d7fcc;
+}
+
+#sidebar ul.components {
+    padding: 20px 0;
+    border-bottom: 1px solid #47748b;
+}
+
+#sidebar ul p {
+    color: #fff;
+    padding: 10px;
+}
+
+#sidebar ul li a {
+    padding: 10px;
+    font-size: 1.1em;
+    display: block;
+}
+#sidebar ul li a:hover {
+    color: #7386D5;
+    background: #fff;
+}
+
+#sidebar ul li.active > a, a[aria-expanded="true"] {
+    color: #fff;
+    background: #6d7fcc;
+}
+
+ul ul a {
+    font-size: 0.9em !important;
+    padding-left: 30px !important;
+    background: #6d7fcc;
+}
+
+#sidebar {
+    width: 250px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    z-index: 999;
+    background: #7386D5;
+    color: #fff;
+    transition: all 0.3s;
+}
+/* Codes above are taken from : https://bootstrapious.com/p/bootstrap-sidebar */
+
+.board-page-navigator{
+    border: solid 1px  white;
+    background-color: white;
+    border-radius: 10px;    
+    margin: 0px 0px 10px;
+    padding: 0px 0px 0px;
+    overflow: hidden;
+}
+
+body{
+    /* background: lightblue; */
+    background: linear-gradient(90deg, rgba(19,165,195,1) 0%, rgba(22,144,179,1) 50%, rgba(19,165,195,1) 100%);
+}
+
+#message-content{
+    font-size: large;
+}
+
+
+
+.comment-div{
+    margin:10px 10px 10px;
+}
+
+.comment-wrapper{
+    margin-bottom: 10px; 
+    vertical-align: middle;
+    border: solid 1px #efefef;
+    border-radius: 5px;
+}
+
+.comment-wrapper:hover{
+    background-color: #f5f5f5;
+}
+
+.display-math{
+    white-space: pre-wrap;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-size: large;
+}
+
+#id_question_statement{
+    width: 50%;
+    resize: both;
+}
+
+.mcq-submit-div{
+    margin: 0px 0px 0px;
+    padding: 40px 1px 0px;
+    border-radius: 0px;
+    position: fixed;
+    right: 0px;
+    border-left: 1px solid black;
+    top: 0px;
+    bottom: 0px;
+    overflow-y: auto;
+    background-color:#ffffff;
+}
+
+.message-detail-page{
+    background-color: white;
+    border-radius: 0px;
+    padding: 0px 20px 0px;
+    margin-bottom:  50px ;
+    margin-top: 20px;
+    margin: px;
+    height: 100%;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.4), 0 1px 2px rgba(0,0,0,0.4);
+}
+
+.message-detail{
+    /* border-style: solid; */
+    border-width: 1px;
+    /* background-color: #f7f7f7; */
+    padding: 0px 0px 20px ;
+    border-bottom-style: solid;
+    border-color: #d0d0d0;
+}
+
+.message-detail-content-outer{
+    margin-top: 5px;
+    border-left: 5px solid #b0b0b0;
+    font-size: large;
+}
+
+.message-detail-content-inner{
+    padding: 10px 0px 10px;
+    margin-left: 10px;
+    font-size: large;
+}
+
+.messsage-detail-comments{
+    font-size: x-large;
+    border-left: 1px solid black;
+}
+
+.message-detail-image{
+    padding: 10px 0px 10px;
+    margin-left: 10px;
+}
+
+.dropbtn {
+    background: transparent;
+    color: white;
+    /* padding: 16px; */
+    /* font-size: 16px; */
+    border: none;
+    cursor: pointer;
+}
+  
+.dropbtn:hover, .dropbtn:focus {
+    /* background-color: #2980B9; */
+}
+  
+.dropdown {
+    position: relative;
+    display: inline-block;
+    float: left;
+}
+  
+.dropdown-content {
+    margin-top: 10px;
+    display: none;
+    border-radius: 10px;
+    background-color: #f1f1f1;
+    opacity: 0.95;
+    position: absolute;
+    min-width: 160px;
+    overflow: auto;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+
+.dropdown-content a {
+    background-color: black;
+    color: white;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+  
+.dropdown-content a:hover {background-color: #2e2e2e;}
+
+.nav-icon{
+    width: 20px;
+    height: 20px;
+}
+.show {display: block;}
+
+.question{
+    margin: 0px 10px 0px;
+    padding: 0px 10px 0px;
+}
+
+.question-statement{
+    font-size: large;
+}
+
+.question-set{
+    margin: 20px 0px 0px;
+}
+
+
+/* #question-sets-all{
+    padding-top: 20px;
+    /* display: grid; */
+    /* grid-template-columns: 1fr 1fr 1fr; */
+    width: 100%;
+} */
+
+.question-set-subject{
+    border-radius: 5px;
+    box-shadow: 0 14px 28px rgba(0,0,0,0.1), 0 10px 10px rgba(0,0,0,0.1);
+    border: solid 3px black;
+    padding: 0px 0px 0px;
+    margin: 0px 0px 20px;
+    background-color: white;
+}
+
+.question-set-title{
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size: 40px;
+    padding: 10px 0px 0px;
+}
+
+.question-set-title-outer{
+    margin: 20px 0px 0px;
+    padding: 0px 0px 0px;
+    background-color:azure;
+    border: solid 1px black;
+    border-radius: 0px; 
+    box-shadow: 0 14px 28px rgba(0,0,0,0.1), 0 10px 10px rgba(0,0,0,0.1);
+}
+
+.result-set-rank-table{
+    background-color: white;
+    margin: 10px 0px 0px;
+    border-radius: 5px;
+}
+
+.result-set-title{
+    padding: 0px 0px 10px;
+    font-size: xx-large;
+    font-weight: bold;
+}
+
+
+#write-message-button{
+    margin-top: 30px;
+    background-color: #f0f0f0;
+    /* width:110px; */
+    height: 40px;
+    line-height: 30px;
+    border-radius: 5px;
+}
+
+#write-message-form{
+    margin-top: 30px;
+    padding-bottom: 10px;
+    padding-right: 0px;
+    border-radius: 5px;
+
+    background-color: #e2dcda;
+    
+    box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+    transition: all 0.3s cubic-bezier(.25,.8,.25,1);
+}
+
+#write-message-form:hover{
+    background-color: #dfe0e0;
+}

@@ -1,0 +1,73 @@
+{% extends 'base_layout.html' %}
+{% load static %}
+
+{% block title %}
+    You are Strong
+{% endblock %}
+
+{% block style %}
+body{
+    {% comment %} background: linear-gradient(to bottom,  #5D3F6A, #503F0A) no-repeat center center fixed; {% endcomment %}
+    background: #d0d0d0;
+}
+
+.blog{
+	border-radius: 5px; 
+    background-color: #f5f5f5;
+    margin-top: 20px;
+    padding: 0px 20px 10px;
+    border: 1px solid white;
+    box-shadow: 0 14px 28px rgba(0,0,0,0.15), 0 10px 10px rgba(0,0,0,0.12);
+    transition: all 0.3s cubic-bezier(.25,.8,.25,1);
+}
+
+.blog:hover{
+    border: 1px solid black;
+    background-color: #f0f0f0;
+}
+
+{% endblock %}
+{% block content %}
+<div class="container">
+    {% if user.is_authenticated %}
+	<form id="write-message-form" name="post-message-form" action="{% url 'api:post_blog' %}" method="POST" enctype="multipart/form-data" style="width: 100%;" >
+		{% csrf_token %}
+		<div style="padding-top: 10px;margin: 0px 10px 0px">
+			<div for="message-title" style="font-size: large; color:black; font-weight: bold;">Title :</div>
+			<textarea required type="text" id="message-title-input" name="title"  style="width:40%; height: 40px;border-radius: 5px; resize: horizontal; font-weight: bold; font-size: x-large; color:black; line-height: 40px;"></textarea>
+			<div for="message-content" style="font-size: large; color:black; font-weight: bold;"> Message :</div>
+			<textarea required type="textarea" id="message-content-input" name="content" style="width: 95%; height:100px; border-radius: 10px; resize:vertical; font-size:large; color:black;"></textarea><br>
+			
+			<button class="btn btn-success" type="submit" value="Submit"> Submit </button>
+		</div>
+	</form>
+
+	{% endif %}
+
+    {% for blog in blogs %}
+        <div class="blog">
+            <span>
+				<h2 style="display: inline; margin-right:10px; font-weight: bold; color:darkblue"> {{ blog.title }}</h3>
+				<span style="font-size: small;">{{ blog.time }}</span>
+			</span>
+
+            <div id="message-content">
+				{{ blog.content }}
+			</div>
+
+            <br>
+			<a href="{% url 'app:blog-detail' blog_id=blog.id %}"> <u> Read more >> </u> </a> 
+			<br>
+			<br>
+			<div style="border-bottom-style: solid; border-bottom-width: 1px; border-bottom-color: #dedede; margin-bottom: 10px;"></div>
+			By <b> 
+					<a href="{% static 'default-profile.jpg' %}"> 
+						<img class="img-float" src="{% static 'default-profile.jpg' %}" style="max-height:30px; border-radius: 50%;">
+						{{ blog.aurthor.first_name }} {{ blog.aurthor.last_name }}
+					</a> 
+				</b>
+			<span style="float: right;"> {{blog.comments_set.all | length}} comments </span>
+        </div>
+    {% endfor %}
+</div>
+{% endblock %}

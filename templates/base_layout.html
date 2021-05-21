@@ -1,0 +1,134 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf8">
+		<title> {% block title %} {% endblock %} </title>
+		<link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap.min.css'%}">
+		<link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap-reboot.min.css'%}">
+		<link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap-grid.min.css'%}">
+		
+		<link rel="shortcut icon" href="{% static 'images/favicon.ico' %}" />
+		<link rel="stylesheet" href="{% static 'styles.css' %}">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+		<script type="text/javascript" src="{% static 'bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+		<script type="text/javascript" src="{% static 'bootstrap/js/bootstrap.min.js' %}"></script>
+		
+		<link href="//netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+
+		
+		<!-- For Latex Support -->
+		<script async src="{% static 'MathJax/es5/tex-mml-chtml.js' %}"></script>
+		<script>
+			window.MathJax = {
+				tex: {
+					inlineMath: [['\\(', '\\)'], ['\\[', '\\]']]
+				}
+			}
+		</script>	
+		<!-- End Latex -->
+		
+		<!-- Global site tag (gtag.js) - Google Analytics -->
+        <script async src="https://www.googletagmanager.com/gtag/js?id=UA-179959781-1"></script>
+        <script>
+              window.dataLayer = window.dataLayer || [];
+              function gtag(){dataLayer.push(arguments);}
+              gtag('js', new Date());
+
+              gtag('config', 'UA-179959781-1');
+        </script>
+
+		<style>
+			@import "https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700";
+			.nav-item:hover{
+				background-color: blue;
+			}
+			.navbar {
+				background-color: #14248c;
+			}
+			.nav-link{
+				color: white;
+			}
+			.nav-link:hover{
+				color: yellow;
+			}
+		</style>
+
+		<style>
+		{% block style %}
+		{% endblock %}
+		</style>
+		
+	</head>
+
+	<body>
+
+		<style>
+			header {
+				background: #f0f0f0;
+				color: black;
+			}
+
+			#main {
+				padding-top:70px;
+			}
+
+			.affix {
+				position: fixed;
+				top: 0;
+				right: 0;
+				left: 0;
+				z-index: 1030;
+			}
+		</style>
+		
+		
+		<script>
+			$(document).ready(function() {
+			var toggleAffix = function(affixElement, scrollElement, wrapper) {
+				var height = affixElement.outerHeight(),
+					top = wrapper.offset().top;
+				
+				if (scrollElement.scrollTop() >= top){
+					wrapper.height(height);
+					affixElement.addClass("affix");
+				}
+				else {
+					affixElement.removeClass("affix");
+					wrapper.height('auto');
+				}
+				
+			};
+			
+
+			$('[data-toggle="affix"]').each(function() {
+				var ele = $(this),
+					wrapper = $('<div></div>');
+				
+				ele.before(wrapper);
+				$(window).on('scroll resize', function() {
+					toggleAffix(ele, $(this), wrapper);
+				});
+				
+				// init
+				toggleAffix(ele, $(window), wrapper);
+			});
+			
+			});
+		</script>
+	
+	{% include 'navbar.html'%}
+
+	<div class="wrapper" style="min-height: 50vh">
+		{% block content %}
+		{% endblock %}
+	</div>
+	
+	<script>
+		{% block script %}
+		{% endblock %}
+	</script>
+	</body>
+			
+</html>
