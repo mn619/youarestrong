@@ -51,6 +51,13 @@ body{
     background-color: darkgreen;
 }
 
+body{
+    background-image: url("{% static 'background.jpeg' %}");
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+}
+
 {% endblock %}
 {% block content %}
 </br> </br>

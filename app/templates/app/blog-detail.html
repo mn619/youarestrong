@@ -5,8 +5,13 @@
     {{ blog.title }}
 {% endblock %}
 
-{% block header_affix %}
-    {{ block.super }}
+{% block style %}
+body{
+    background-image: url("{% static 'background.jpeg' %}");
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+}
 {% endblock %}
 
 {% block content %}
